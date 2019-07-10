@@ -6,6 +6,11 @@ spring:
         username: sa
         password: 
     jpa:        database-platform: org.hibernate.dialect.H2Dialect
+    sleuth:        trace-id128: true
+        sampler:            probability: 1.0
+        feign:            enabled: true
+        zuul:
+            enabled: true    zipkin:        base-url: http://localhost:9441
 
 server:
     port: 8100
