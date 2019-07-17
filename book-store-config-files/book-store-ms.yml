@@ -33,3 +33,5 @@ eureka:
 
 bookstore:
     message: Funny Book Store
+
+welcome: Welcome To Funny Book Store
