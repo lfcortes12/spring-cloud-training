@@ -1,6 +1,7 @@
 package com.glb.training.bookstorems.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +16,25 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class BookRestController {
 
+	private final DiscoveryClient discoveryClient;
+	private final BookRepository bookRepository;
+
+	private final String welcome;
+
 	@Autowired
-	private DiscoveryClient discoveryClient;
-	@Autowired
-	private BookRepository bookRepository;
+	public BookRestController(DiscoveryClient discoveryClient, BookRepository bookRepository,
+			@Value("${bookstore.message}") String welcome) {
+		super();
+		this.discoveryClient = discoveryClient;
+		this.bookRepository = bookRepository;
+		this.welcome = welcome;
+	}
 
 	@GetMapping("/info")
 	public String getDiscoveryClientInfo() {
 		log.debug("Discovery Client Info");
 
-		return "Service Instance: " + discoveryClient.getServices().toString();
+		return welcome + "Service Instance: " + discoveryClient.getServices().toString();
 	}
 
 	@GetMapping("/book/{isbn}")
