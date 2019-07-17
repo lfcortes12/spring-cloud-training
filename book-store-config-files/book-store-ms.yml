@@ -5,7 +5,7 @@ spring:
         url: jdbc:h2:mem:bookstoredb
         driver-class-name: org.h2.Driver
         username: sa
-        password: newpass
+        password: 
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
     sleuth:
@@ -30,3 +30,6 @@ eureka:
         lease-renewal-interval-in-seconds: 10
         metadata-map:
             instance-id: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+
+bookstore:
+    message: Funny Book Store
