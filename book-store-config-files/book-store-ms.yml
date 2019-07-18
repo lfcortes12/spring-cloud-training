@@ -32,6 +32,6 @@ eureka:
             instance-id: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
 
 bookstore:
-    message: Funny Book Store
+    message: Funny Book Store!!!!!
 
 welcome: Welcome To Funny Book Store
