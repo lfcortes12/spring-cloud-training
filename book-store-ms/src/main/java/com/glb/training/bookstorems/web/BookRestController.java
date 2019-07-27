@@ -1,5 +1,7 @@
 package com.glb.training.bookstorems.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -37,6 +39,12 @@ public class BookRestController {
 		log.debug("Discovery Client Info");
 
 		return welcome + "Service Instance: " + discoveryClient.getServices().toString();
+	}
+	
+	@GetMapping("/books")
+	public List<Book> getBooks() {
+		log.debug("Getting all books");
+		return bookRepository.findAll();
 	}
 
 	@GetMapping("/book/{isbn}")
