@@ -9,25 +9,23 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 @Entity
 @Table(name = "book")
 @Builder
-@Data
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Book {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private final Long id;
 	@Column
-	private String name;
+	private final String name;
 	@Column
-	private String isbn;
+	private final String isbn;
 	@Column
-	private String author;
+	private final String author;
 
 }
