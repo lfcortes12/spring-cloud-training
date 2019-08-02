@@ -10,17 +10,19 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "book")
 @Builder
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Rating {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private final Long bookId;
+	private Long bookId;
 	@Column
-	private final Long value;
+	private Long value;
 
 }
