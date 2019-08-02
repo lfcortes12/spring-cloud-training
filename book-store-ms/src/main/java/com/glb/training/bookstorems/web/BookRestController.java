@@ -1,6 +1,7 @@
 package com.glb.training.bookstorems.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.glb.training.bookstorems.clients.RatingClient;
+import com.glb.training.bookstorems.dto.BookDTO;
+import com.glb.training.bookstorems.dto.RatingDTO;
 import com.glb.training.bookstorems.model.Book;
 import com.glb.training.bookstorems.repository.BookRepository;
 
@@ -22,15 +26,17 @@ public class BookRestController {
 
 	private final DiscoveryClient discoveryClient;
 	private final BookRepository bookRepository;
+	private final RatingClient ratingClient;
 
 	private final String welcome;
 
 	@Autowired
-	public BookRestController(DiscoveryClient discoveryClient, BookRepository bookRepository,
+	public BookRestController(DiscoveryClient discoveryClient, BookRepository bookRepository, RatingClient ratingClient,
 			@Value("${bookstore.message}") String welcome) {
 		super();
 		this.discoveryClient = discoveryClient;
 		this.bookRepository = bookRepository;
+		this.ratingClient = ratingClient;
 		this.welcome = welcome;
 	}
 
@@ -40,11 +46,21 @@ public class BookRestController {
 
 		return welcome + "Service Instance: " + discoveryClient.getServices().toString();
 	}
-	
+
 	@GetMapping("/books")
 	public List<Book> getBooks() {
 		log.debug("Getting all books");
 		return bookRepository.findAll();
+	}
+
+	@GetMapping("/book/detail/{bookId}")
+	public BookDTO getBooksDetails(@PathVariable final Long bookId) {
+		log.debug("Getting all books");
+		RatingDTO findBookRating = ratingClient.findBookRating(bookId);
+		Optional<Book> bookOpt = bookRepository.findById(bookId);
+		BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
+				.isbn(book.getIsbn()).name(book.getName()).rating(findBookRating).build()).get();
+		return bookDTO;
 	}
 
 	@GetMapping("/book/{isbn}")
