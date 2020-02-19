@@ -27,6 +27,7 @@ repositories {
 
 ext {
 	set('springCloudVersion', "Hoxton.M1")
+	set('azureVersion', "2.2.0")
 }
 
 dependencies {
@@ -50,6 +51,8 @@ dependencies {
 	// Rest Clients
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	
+	implementation 'com.microsoft.azure:azure-spring-boot-starter'
+	
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
@@ -70,6 +73,7 @@ dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 		mavenBom "org.junit:junit-bom:5.5.2"
+		mavenBom "com.microsoft.azure:azure-spring-boot-bom:${azureVersion}"
 	}
 }
 
