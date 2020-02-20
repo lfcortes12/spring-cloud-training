@@ -14,15 +14,6 @@ spring:
             enabled: true
         zuul:
             enabled: true
-    zipkin:
-        base-url: http://localhost:9441
-
-
-eureka:
-    instance:
-        lease-renewal-interval-in-seconds: 10
-        metadata-map:
-            instance-id: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
 
 feign:
   client:
