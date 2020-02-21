@@ -1,9 +1,11 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.0.RELEASE'
 	id 'java'
+	id 'com.google.cloud.tools.jib' version '2.0.0'
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.google.cloud.tools.jib"
 
 group = 'com.glb.training'
 version = '0.0.1-SNAPSHOT'
@@ -35,4 +37,20 @@ dependencyManagement {
 
 test {
 	useJUnitPlatform()
+}
+
+tasks.build.dependsOn tasks.jib
+
+jib {
+  from {
+    image = 'adoptopenjdk/openjdk8-openj9:jdk8u242-b08_openj9-0.18.1-alpine-slim'
+  }
+  to {
+    image = 'luiscortes/book-store-registry-server'
+    credHelper = 'secretservice'
+  }
+  container {
+    user = 'glb'
+    ports = ['8761']
+  }
 }
