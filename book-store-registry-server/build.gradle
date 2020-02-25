@@ -50,7 +50,6 @@ jib {
     credHelper = 'secretservice'
   }
   container {
-    user = 'glb'
     ports = ['8761']
   }
 }
