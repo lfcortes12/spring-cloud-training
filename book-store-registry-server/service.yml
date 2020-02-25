@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-store-registry-server-load-balancer
+  labels:
+    app: book-store-registry-server
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8761
+    targetPort: 8761
+    protocol: TCP
+  selector:
+    app: book-store-registry-server

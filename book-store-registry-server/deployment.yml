@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-store-registry-server
+  labels:
+    app: book-store-registry-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-store-registry-server
+  template:
+    metadata:
+      labels:
+        app: book-store-registry-server
+    spec:
+      containers:
+      - name: book-store-registry-server
+        image: luiscortes/book-store-registry-server:latest
+        ports:
+        - containerPort: 8761

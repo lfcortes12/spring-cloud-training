@@ -1,5 +1,19 @@
 # spring-cloud-training
 
+## Kubernates
+
+Configure your local environment:
+
+- [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/ "MiniKube")
+- [MicroK8s](https://kubernetes.io/blog/2019/11/26/running-kubernetes-locally-on-linux-with-microk8s/ "MicroK8s")
+
+If configure Minikube without any driver (i.e. virtualbox), do not run it with the root user just change it in this way:
+
+```
+sudo mv /root/.kube /root/.minikube $HOME
+sudo chown -R $USER $HOME/.kube $HOME/.minikube
+```
+
 ## Jib
 
 [Jib](https://github.com/GoogleContainerTools/jib "Jib Github Page") is a tool for building optimized docker images for Java applications without taking care of maintaining docker configuration files. You have the chance to configure it with Gradle and Maven based projects.
@@ -52,13 +66,7 @@ Finally, take a look to the image built at [Docker Hub Registry](https://hub.doc
 ## Create a container
 
 ```
-docker run --name bookstore-ms-registry bookstore/registry bookstore/registry
-```
-
-## Create a container
-
-```
-docker run --name bookstore/registry bookstore/registry -p 8761:8761
+docker run --name bookstore-ms-registry -p 8761:8761 -d bookstore/registry
 ```
 
 ## List created containers
@@ -71,3 +79,7 @@ docker ps -a
 docker stop container-id
 docker start container-id
 ```
+
+## References
+
+- [MicroK8s Video Tutorial](https://asciinema.org/a/263394 "MicroK8s Video Tutorial")
