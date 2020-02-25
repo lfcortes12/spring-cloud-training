@@ -90,7 +90,7 @@ jib {
     credHelper = 'secretservice'
   }
   container {
-    ports = ['8761']
+    ports = ['8100']
   }
 }
 
