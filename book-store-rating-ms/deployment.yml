@@ -19,8 +19,10 @@ spec:
         image: luiscortes/book-store-rating-ms:latest
         imagePullPolicy: Always
         env:
-         - CLOUD_CONFIG_ENDPOINT: http://192.168.1.190:30684/config/
-         - CLOUD_CONFIG_LABEL: azure-kubernates
+         - name: CLOUD_CONFIG_ENDPOINT
+           value: http://192.168.1.190:30684/config/ 
+         - name: CLOUD_CONFIG_LABEL
+           value: azure-kubernates
         ports:
         - containerPort: 8200
         readinessProbe:
