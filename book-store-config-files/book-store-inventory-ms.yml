@@ -24,8 +24,8 @@ server:
 
 eureka:
     client:
-        service-url:
-            default-zone: http://192.168.1.190:30684/eureka/
+        serviceUrl:
+            defaultZone: http://192.168.1.190:30684/eureka/
     instance:
         lease-renewal-interval-in-seconds: 10
         metadata-map:
