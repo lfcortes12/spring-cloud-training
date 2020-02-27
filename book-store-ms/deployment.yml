@@ -18,6 +18,11 @@ spec:
       - name: book-store-inventory-ms
         image: luiscortes/book-store-inventory-ms:latest
         imagePullPolicy: Always
+        env:
+         - name: CLOUD_CONFIG_ENDPOINT
+           value: http://192.168.1.190:30684/config/ 
+         - name: CLOUD_CONFIG_LABEL
+           value: azure-kubernates
         ports:
         - containerPort: 8100
         readinessProbe:
