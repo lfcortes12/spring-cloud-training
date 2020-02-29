@@ -56,7 +56,7 @@ jib {
     image = 'adoptopenjdk/openjdk8-openj9:jdk8u242-b08_openj9-0.18.1-alpine-slim'
   }
   to {
-    image = 'luiscortes/book-store-rating-ms'
+    image = 'luiscortes/book-store-gateway-ms'
     credHelper = 'secretservice'
   }
   container {
