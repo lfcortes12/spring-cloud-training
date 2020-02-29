@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-store-gateway-ms
+  labels:
+    app: book-store-gateway-ms
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: book-store-gateway-ms
+  template:
+    metadata:
+      labels:
+        app: book-store-gateway-ms
+    spec:
+      containers:
+      - name: book-store-gateway-ms
+        image: luiscortes/book-store-gateway-ms:latest
+        imagePullPolicy: Always
+        env:
+         - name: CLOUD_CONFIG_ENDPOINT
+           value: http://192.168.1.190:30684/config/ 
+         - name: CLOUD_CONFIG_LABEL
+           value: azure-kubernates
+        ports:
+        - containerPort: 8090
+        readinessProbe:
+          tcpSocket:
+            port: 8090
+          initialDelaySeconds: 8
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 1
+          successThreshold: 1
+        livenessProbe:
+          tcpSocket:
+            port: 8090
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 2
+          failureThreshold: 1
+          successThreshold: 1
