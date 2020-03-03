@@ -88,6 +88,7 @@ jib {
   to {
     image = 'luiscortes/book-store-inventory-ms'
     credHelper = 'secretservice'
+    tags = ['latest', project.version]
   }
   container {
     ports = ['8100']
