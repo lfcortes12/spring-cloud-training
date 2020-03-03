@@ -44,7 +44,7 @@ public class BookRestController {
 	public String getDiscoveryClientInfo() {
 		log.debug("Discovery Client Info");
 
-		return welcome + "Service Instance: " + discoveryClient.getServices().toString();
+		return welcome + "Service Instance: " + discoveryClient.description();
 	}
 
 	@GetMapping("/books")
