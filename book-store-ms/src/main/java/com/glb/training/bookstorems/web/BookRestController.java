@@ -1,11 +1,12 @@
 package com.glb.training.bookstorems.web;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,27 +25,25 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class BookRestController {
 
-	private final DiscoveryClient discoveryClient;
 	private final BookRepository bookRepository;
 	private final RatingClient ratingClient;
 
 	private final String welcome;
 
 	@Autowired
-	public BookRestController(DiscoveryClient discoveryClient, BookRepository bookRepository, RatingClient ratingClient,
+	public BookRestController(BookRepository bookRepository, RatingClient ratingClient,
 			@Value("${bookstore.message:hello world}") String welcome) {
 		super();
-		this.discoveryClient = discoveryClient;
 		this.bookRepository = bookRepository;
 		this.ratingClient = ratingClient;
 		this.welcome = welcome;
 	}
 
 	@GetMapping("/info")
-	public String getDiscoveryClientInfo() {
+	public String getDiscoveryClientInfo() throws UnknownHostException {
 		log.debug("Discovery Client Info");
 
-		return welcome + "Service Instance: " + discoveryClient.description();
+		return welcome + "Service Instance deployed on: ########### " + InetAddress.getLocalHost().getHostAddress();
 	}
 
 	@GetMapping("/books")

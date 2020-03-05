@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: book-store-inventory-ms
-        image: luiscortes/book-store-inventory-ms:latest
-        imagePullPolicy: Always
+        image: luiscortes/book-store-inventory-ms
+        imagePullPolicy: IfNotPresent
         env:
          - name: CLOUD_CONFIG_ENDPOINT
            value: http://192.168.1.190:30684/config/ 
