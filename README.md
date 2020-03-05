@@ -62,22 +62,21 @@ To publish your images to the docker registry, define the auth or credHelper con
 
 Finally, take a look to the image built at [Docker Hub Registry](https://hub.docker.com/repository/docker/luiscortes/book-store-registry-server "Docker Hub Registry"). Now the image is ready to use in your deployment.
 
+## Skaffold
 
-## Create a container
+[Scaffold](https://skaffold.dev/ "Scaffold") is tool able to handle the workflow for building, pushing and deploying your application based on Kubernates.
 
 ```
-docker run --name bookstore-ms-registry -p 8761:8761 -d bookstore/registry
-```
-
-## List created containers
-```
-docker ps -a
+curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+chmod +x skaffold
+sudo mv skaffold /usr/local/bin
 ```
 
-## Stop or start a containers
+
+## Initialize skaffold in your project
+
 ```
-docker stop container-id
-docker start container-id
+skaffold init --XXenableJibInit
 ```
 
 ## References
