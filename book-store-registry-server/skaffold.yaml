@@ -1,0 +1,19 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: book-store-registry-server
+build:
+  artifacts:
+  - image: luiscortes/book-store-registry-server
+    jib: {}
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yml
+    - service.yml
+portForward:
+- resourceType: deployment
+  resourceName: book-store-registry-server
+  namespace: book-store  # 
+  port: 8761 # 
+  localPort: 8761 # *Optional*
