@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: book-store-inventory-ms
+  name: book-store-gateway-ms
   labels:
-    app: book-store-inventory-ms
+    app: book-store-gateway-ms
 spec:
   type: LoadBalancer
   ports:
-  - port: 8100
-    targetPort: 8100
+  - port: 8090
+    targetPort: 8090
     protocol: TCP
   selector:
-    app: book-store-inventory-ms
+    app: book-store-gateway-ms
