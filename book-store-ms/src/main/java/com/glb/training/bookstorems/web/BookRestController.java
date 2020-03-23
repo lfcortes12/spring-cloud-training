@@ -34,7 +34,7 @@ public class BookRestController {
 
 	@Autowired
 	public BookRestController(DiscoveryClient discoveryClient, BookRepository bookRepository, RatingClient ratingClient,
-			@Value("${bookstore.message}") String welcome) {
+			@Value("${bookstore.message:hello world}") String welcome) {
 		super();
 		this.discoveryClient = discoveryClient;
 		this.bookRepository = bookRepository;
