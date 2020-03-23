@@ -34,8 +34,6 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://book-store-registry-server:8761/eureka/
-        registerWithEureka: false
-        fetchRegistry: true
     instance:
         preferIpAddress: true
         leaseRenewalIntervalInSeconds: 10
