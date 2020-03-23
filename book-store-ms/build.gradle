@@ -52,6 +52,9 @@ dependencies {
 	// Rest Clients
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	
+	// Circuit Breaker
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+	
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
