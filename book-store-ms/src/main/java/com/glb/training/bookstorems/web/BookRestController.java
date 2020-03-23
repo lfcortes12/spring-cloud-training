@@ -33,8 +33,8 @@ public class BookRestController {
 	private final String welcome;
 
 	@Autowired
-	public BookRestController(BookRepository bookRepository, RatingClient ratingClient,
-			@Value("${bookstore.message:hello world}") String welcome) {
+	public BookRestController(final BookRepository bookRepository, final RatingClient ratingClient,
+			@Value("${bookstore.message:hello world}") final String welcome) {
 		super();
 		this.bookRepository = bookRepository;
 		this.ratingClient = ratingClient;
@@ -57,18 +57,18 @@ public class BookRestController {
 	@HystrixCommand(fallbackMethod = "getBooksDetailsFallback")
 	@GetMapping("/book/detail/{bookId}")
 	public ResponseEntity<BookDTO> getBooksDetails(@PathVariable final Long bookId) {
-		log.debug("Getting book detail {}", bookId);
-		RatingDTO findBookRating = ratingClient.findBookRating(bookId);
-		Optional<Book> bookOpt = bookRepository.findById(bookId);
-		BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
+		log.info("Getting book detail {}", bookId);
+		final RatingDTO findBookRating = ratingClient.findBookRating(bookId);
+		final Optional<Book> bookOpt = bookRepository.findById(bookId);
+		final BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
 				.isbn(book.getIsbn()).name(book.getName()).rating(findBookRating).build()).get();
 		return ResponseEntity.of(Optional.ofNullable(bookDTO));
 	}
-	
+
 	public ResponseEntity<BookDTO> getBooksDetailsFallback(@PathVariable final Long bookId) {
-		log.debug("Getting book detail fallback {}", bookId);
-		Optional<Book> bookOpt = bookRepository.findById(bookId);
-		BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
+		log.info("Getting book detail fallback {}", bookId);
+		final Optional<Book> bookOpt = bookRepository.findById(bookId);
+		final BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
 				.isbn(book.getIsbn()).name(book.getName()).build()).get();
 		return ResponseEntity.of(Optional.ofNullable(bookDTO));
 	}

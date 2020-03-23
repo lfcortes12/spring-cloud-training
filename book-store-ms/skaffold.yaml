@@ -12,7 +12,7 @@ deploy:
   kubectl:
     manifests:
     - deployment.yml
-    #- service.yml
+    - service.yml
 portForward:
 - resourceType: deployment
   resourceName: myDep
