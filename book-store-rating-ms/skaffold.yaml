@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: book-store-rating-ms
+build:
+  local:
+    push: false
+  artifacts:
+  - image: luiscortes/book-store-rating-ms
+    jib: {}
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yml
+    - service.yml
+portForward:
+- resourceType: deployment
+  resourceName: myDep
+  namespace: mynamespace  # 
+  port: 8200 # 
+  localPort: 8200 # *Optional*
