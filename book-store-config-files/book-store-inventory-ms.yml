@@ -25,7 +25,7 @@ server:
 eureka:
     client:
         serviceUrl:
-            defaultZone: http://192.168.1.190:30684/eureka/
+            defaultZone: http://book-store-registry-server:8761/eureka/
     instance:
         preferIpAddress: true
         leaseRenewalIntervalInSeconds: 10
