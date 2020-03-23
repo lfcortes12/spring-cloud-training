@@ -20,9 +20,11 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
          - name: CLOUD_CONFIG_ENDPOINT
-           value: http://192.168.1.190:30684/config/ 
+           value: http://book-store-registry-server:8761/config/
          - name: CLOUD_CONFIG_LABEL
            value: azure-kubernates
+         - name: JAVA_TOOL_OPTIONS
+           value: -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n,quiet=y
         ports:
         - containerPort: 8100
         readinessProbe:

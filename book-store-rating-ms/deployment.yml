@@ -17,27 +17,33 @@ spec:
       containers:
       - name: book-store-rating-ms
         image: luiscortes/book-store-rating-ms:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
          - name: CLOUD_CONFIG_ENDPOINT
-           value: http://192.168.1.190:30684/config/ 
+           value: http://book-store-registry-server:8761/config/
          - name: CLOUD_CONFIG_LABEL
            value: azure-kubernates
+         - name: JAVA_TOOL_OPTIONS
+           value: -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n,quiet=y
         ports:
         - containerPort: 8200
         readinessProbe:
-          tcpSocket:
+          httpGet:
+            path: "/actuator/health"
             port: 8200
-          initialDelaySeconds: 8
+            scheme: "HTTP"
+          failureThreshold: 3
+          initialDelaySeconds: 12
           periodSeconds: 10
-          timeoutSeconds: 2
-          failureThreshold: 1
+          timeoutSeconds: 10
           successThreshold: 1
         livenessProbe:
-          tcpSocket:
+          httpGet:
+            path: "/actuator/info"
             port: 8200
-          initialDelaySeconds: 15
-          periodSeconds: 20
-          timeoutSeconds: 2
-          failureThreshold: 1
+            scheme: "HTTP"
+          failureThreshold: 3
+          initialDelaySeconds: 8
+          periodSeconds: 30
+          timeoutSeconds: 10
           successThreshold: 1
