@@ -2,6 +2,8 @@
 
 ## Kubernates
 
+Minikube Installation https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
+
 Configure your local environment:
 
 - [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/ "MiniKube")
@@ -10,9 +12,42 @@ Configure your local environment:
 If configure Minikube without any driver (i.e. virtualbox), do not run it with the root user just change it in this way:
 
 ```
+minikube start --vm-driver=docker
 sudo mv /root/.kube /root/.minikube $HOME
 sudo chown -R $USER $HOME/.kube $HOME/.minikube
 ```
+
+If you want to see more logs creating the cluster use this sudo minikube start --vm-driver=none  --alsologtostderr -v=8
+
+Show kubernates Dashboard
+```
+minikube dashboard # opens a tab in your browser
+```
+
+## Checking installation
+
+```
+minikube status
+kubectl cluster-info
+```
+
+## Troubleshooting
+
+- [(https://github.com/kubernetes/minikube/issues/5715 "Failed to save config profiles/minikube/config.json")]
+
+In case of getting errors creating a cluster, use below commands to remove tmp files:
+```
+sudo rm -rf /tmp/juju-mk*
+sudo rm -rf /tmp/minikube.*
+```
+
+- kuctl bash completion error
+
+if faces this issue getting bash completion kubectl _get_comp_words_by_ref: command not found execute below command (https://stackoverflow.com/questions/50406142/kubectl-bash-completion-doesnt-work-in-ubuntu-docker-container):
+```
+source /etc/bash_completion
+```
+
 
 ## Jib
 
