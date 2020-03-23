@@ -3,7 +3,7 @@ server:
 
 eureka:
     instance:
-        hostname: 192.168.1.190
+        hostname: book-store-registry-server
         preferIpAddress: true 
     client:
         register-with-eureka: false
