@@ -30,7 +30,7 @@ spec:
         readinessProbe:
           httpGet:
             path: "/actuator/health"
-            port: 8200
+            port: 8090
             scheme: "HTTP"
           failureThreshold: 3
           initialDelaySeconds: 12
@@ -40,7 +40,7 @@ spec:
         livenessProbe:
           httpGet:
             path: "/actuator/info"
-            port: 8200
+            port: 8090
             scheme: "HTTP"
           failureThreshold: 3
           initialDelaySeconds: 8
