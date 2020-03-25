@@ -1,7 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.0.M4'
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'java'
 	id 'com.google.cloud.tools.jib' version '2.1.0'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -9,7 +10,7 @@ apply plugin: "com.google.cloud.tools.jib"
 
 group = 'com.glb.training'
 version = '0.0.3-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '13'
 
 configurations {
 	developmentOnly
@@ -28,7 +29,7 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "Hoxton.M1")
+	set('springCloudVersion', "Hoxton.SR3")
 }
 
 dependencies {
