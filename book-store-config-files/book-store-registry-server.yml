@@ -4,7 +4,8 @@ server:
 eureka:
     instance:
         hostname: book-store-registry-server
-        preferIpAddress: true 
+        preferIpAddress: true
+        healthCheckUrlPath: /actuator/health
     client:
         register-with-eureka: false
         fetch-registry: true
