@@ -68,5 +68,6 @@ jib {
   }
   container {
     ports = ['8200']
+    user = 'nobody:nogroup'
   }
 }

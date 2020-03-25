@@ -57,5 +57,6 @@ jib {
   }
   container {
     ports = ['8761']
+    user = 'nobody:nogroup'
   }
 }
