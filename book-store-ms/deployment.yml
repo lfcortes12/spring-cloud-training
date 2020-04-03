@@ -24,9 +24,12 @@ spec:
          - name: CLOUD_CONFIG_LABEL
            value: azure-kubernates
          - name: JAVA_TOOL_OPTIONS
-           value: -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n,quiet=y
+           value: -agentlib:jdwp=transport=dt_socket,server=y,address=*:5005,suspend=n,quiet=y
         ports:
         - containerPort: 8100
+          name: "http"
+        - containerPort: 5005
+          name: "debug"
         readinessProbe:
           httpGet:
             path: "/actuator/health"

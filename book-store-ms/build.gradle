@@ -95,7 +95,7 @@ jib {
     tags = ['latest']
   }
   container {
-    ports = ['8100']
+    ports = ['8100', '5005']
     user = 'nobody:nogroup'
   }
 }

@@ -19,3 +19,8 @@ portForward:
   namespace: mynamespace  # 
   port: 8100 # 
   localPort: 8100 # *Optional*
+- resourceType: service
+  resourceName: debug
+  namespace: mynamespace  # 
+  port: 5005 # 
+  localPort: 5005 # *Optional*
