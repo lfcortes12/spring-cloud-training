@@ -61,7 +61,7 @@ public class BookRestController {
 		final RatingDTO findBookRating = ratingClient.findBookRating(bookId);
 		final Optional<Book> bookOpt = bookRepository.findById(bookId);
 		final BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
-				.isbn(book.getIsbn()).name(book.getName()).rating(findBookRating).build()).get();
+				.isbn(book.getIsbn()).name(book.getName()).rating(findBookRating).build()).orElse(null);
 		return ResponseEntity.of(Optional.ofNullable(bookDTO));
 	}
 
@@ -69,7 +69,7 @@ public class BookRestController {
 		log.info("Getting book detail fallback {}", bookId);
 		final Optional<Book> bookOpt = bookRepository.findById(bookId);
 		final BookDTO bookDTO = bookOpt.map(book -> BookDTO.builder().author(book.getAuthor()).id(book.getId())
-				.isbn(book.getIsbn()).name(book.getName()).build()).get();
+				.isbn(book.getIsbn()).name(book.getName()).build()).orElse(null);
 		return ResponseEntity.of(Optional.ofNullable(bookDTO));
 	}
 
